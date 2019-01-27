@@ -1,10 +1,10 @@
 ---
-title: 搭建服务器亲自亲自体验跨域
+title: 搭建服务器亲自体验跨域
 date: 2019-01-18 19:07:13
 tags:
 - 跨域
 categories:
--前端
+- 前端
 ---
 
 ## 背景
@@ -197,7 +197,7 @@ function getAjax() {
 
 很简单 大概长这样儿
 
-![koa2](media/15478002097574/koa2.png)
+![koa2](/images/cors/koa2.png)
 
 **AJAX**
 
@@ -207,13 +207,13 @@ function getAjax() {
   
  请求接口：`baseUrl = 'http://localhost:8000';`
  测试结果👇
- ![koa3](media/15478002097574/koa3.png)
+ ![koa3](/images/cors/koa3.png)
 
 
 2. 跨域ajax请求
 请求接口：`baseUrl = 'http://localhost:3000';`
 测试结果👇
-![koa4](media/15478002097574/koa4.png)
+![koa4](/images/cors/koa4.png)
 很明显 跨域了
 
 ### 针对浏览器的Ajax请求跨域的主要解决方案有：JSONP、CORS。
@@ -264,7 +264,7 @@ app.use(router.routes());
 将callback的值以function(args)的格式作为response。
 
 重启服务 触发页面的 `JSONP`🔘
-![koa5](media/15478002097574/koa5.png)
+![koa5](/images/cors/koa5.png)
 
 
 <font color="red">优点</font>
@@ -311,7 +311,7 @@ Origin用来说明请求来自哪个源（协议 + 域名 + 端口）。服务�
 
 回顾下直接Ajax测试跨域的请求报文：
 
-![koa6](media/15478002097574/koa6.png)
+![koa6](/images/cors/koa6.png)
 浏览器为这个简单的GET请求添加了Origin，而响应头信息中没有Access-Control-Allow-Origin，浏览器判断请求跨域，给出错误提示。
 
 * 非简单请求
@@ -343,7 +343,7 @@ function corsWithJson() {
 通过设置Content-Type为appliaction/json使其成为非简单请求：
 
 启动服务
-![koa7](media/15478002097574/koa7.png)
+![koa7](/images/cors/koa7.png)
 "预检"请求的方法为OPTIONS，服务器判断Origin为跨域
 
 除了Origin字段，"预检"请求的头信息包括两个特殊字段。
@@ -375,7 +375,7 @@ app.use(cors({
 ```
 重启服务后，浏览器重新发送POST请求。可以看到浏览器发送了两次请求。
 
-![koa8](media/15478002097574/koa8.png)
+![koa8](/images/cors/koa8.png)
 
 （1）**Access-Control-Allow-Methods**
 该字段必需，它的值是逗号分隔的一个字符串，表明服务器支持的所有跨域请求的方法。注意，返回的是所有支持的方法，而不单是浏览器请求的那个方法。这是为了避免多次"预检"请求。
@@ -388,7 +388,7 @@ app.use(cors({
 
 现在为止 默认你已经完全理解跨域了哦
 
-示例中的源代码 
+示例中的源代码
 
 
 
