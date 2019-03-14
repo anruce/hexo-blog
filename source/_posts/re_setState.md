@@ -4,8 +4,9 @@ date: 2019-01-27 19:34:45
 tags:
 - setState
 categories:
-- 前端,react
+- react
 ---
+
 
 
 ## 开篇
@@ -21,6 +22,8 @@ categories:
 在哪里跌倒就把哪里买下来，被坑了之后，痛定思痛决定研究下`setState`怪象，最后发现 react真是博大精深
 
 <font color="red">文章太太太长了，不太感兴趣的话，可以拉到最后总结，也能避免入坑</font>
+
+<!--more-->
 
 ## 引出问题
 
@@ -333,7 +336,7 @@ if(this.state.val !==0){
 ![setTimeout](/images/setState/setTimeout.png)
 上述结果，如果你了解<font color="red">js事件循环（ event loop）</font>的机制 就太简单了
 
-默认你已经阅读过全文的上半部分 了解了 `setState`逻辑都是在**try**模块中执行的是在 try 代码块中,当你 try 代码块执行到 `setTimeout` 的时候，把它丢到**定时器触发线程(浏览器提供的线程)**去维护，并没有立即执行，先执行的 `finally` 代码块，等 finally 执行完了， `isBatchingUpdates` 又变为了 `false` ，导致最后去执行队列里的 setState 时候， requestWork 走的是和原生事件一样的 `expirationTime === Sync if`分支，所以表现就会和原生事件一样，可以同步拿到最新的`state`值。
+默认你已经阅读过全文的上半部分 了解了 `setState`逻辑都是在**try**模块中执行的,此时当执行到 `setTimeout` 的时候，把它丢到**定时器触发线程(浏览器提供的线程)**去维护，并没有立即执行，先执行的 `finally` 代码块，等 finally 执行完了， `isBatchingUpdates` 又变为了 `false` ，导致最后去执行队列里的 setState 时候， requestWork 走的是和原生事件一样的 `expirationTime === Sync if`分支，所以表现就会和原生事件一样，可以同步拿到最新的`state`值。
 
 关于js事件循环 又是另一个模块儿的东西 值得单开一章去研究，这里就不再细说了 感兴趣的同学 可移步
 [js到底是如何工作的](http://maying.ink/2018/11/17/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3js%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84/#more) 寻找答案
@@ -427,6 +430,14 @@ API的设计符合函数式编程思想，开发者编写无副作用的函数 i
 * setState 的“异步”并不是说内部由异步代码实现，其实本身执行的过程和代码都是同步的，只是合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数中没法立马拿到更新后的值，形成了所谓的“异步”，但是如果需要，也有解决方案可以直接拿到最新的值
 * setState 的批量更新优化也是建立在“异步”（合成事件、钩子函数）之上的，在原生事件和setTimeout 中不会批量更新，在“异步”中如果对同一个值进行多次setState，setState的批量更新策略会对其进行覆盖，取最后一次的执行，如果是同时setState多个不同的值，在更新时会对其进行合并批量更新。
 * 像写受控组件那样儿去操作setState
+
+
+
+
+
+参考文章：https://zhuanlan.zhihu.com/p/39512941
+        https://zhuanlan.zhihu.com/p/25990883
+        
 
 
 

@@ -5,7 +5,12 @@ tags: [js,react]
 toc: false
 ---
 
+
 [读react官网](http://www.css88.com/react/docs/hello-world.html)
+
+关于react 你必须要知道的事情～
+
+<!-- more -->
 
 ## react阻止默认事件
 在react阻止默认行为 必须使用
@@ -946,76 +951,12 @@ renderToStaticNodeStream()
 渲染流可以减小第一个字节(TTFB)渲染时间，在文档的下一个部分生成之前，将文档的开头向下发送到浏览器。所有主流浏览器都会在服务器以这种方式流出内容时开始解析和呈现文档。
 
 
-### 在组件中使用跟组件处理函数
 #### 节流
-是阻止函数在给定时间内被多次调用。下面这个例子会阻止“click”事件每秒钟的多次调用。
+是阻止函数在给定时间内被多次调用
 
-```
-import throttle from 'lodash.throttle';
-
-class LoadMoreButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleClickThrottled = throttle(this.handleClick, 1000);
-  }
-
-  componentWillUnmount() {
-    this.handleClickThrottled.cancel();
-  }
-
-  render() {
-    return <button onClick={this.handleClickThrottled}>Load More</button>;
-  }
-
-  handleClick() {
-    this.props.loadMore();
-  }
-}
-
-```
 #### Debounce（防抖）
 
 防抖确保函数上次执行后的一段时间内，不会再次执行。
-下面这个例子以250ms的延迟来改变文本输入。
-
-```
-import debounce from 'lodash.debounce';
-
-class Searchbox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.emitChangeDebounced = debounce(this.emitChange, 250);
-  }
-
-  componentWillUnmount() {
-    this.emitChangeDebounced.cancel();
-  }
-
-  render() {
-    return (
-      <input
-        type="text"
-        onChange={this.handleChange}
-        placeholder="Search..."
-        defaultValue={this.props.value}
-      />
-    );
-  }
-
-  handleChange(e) {
-    // React pools events, so we read the value before debounce.
-    // Alternately we could call `event.persist()` and pass the entire event.
-    // For more info see reactjs.org/docs/events.html#event-pooling
-    this.emitChangeDebounced(e.target.value);
-  }
-
-  emitChange(value) {
-    this.props.onChange(value);
-  }
-}
-```
 
 #### 操作css
 
@@ -1031,11 +972,11 @@ render() {
 ### Virtual DOM and Internals
 #### 什么是虚拟dom
 虚拟dom是一种编程概念，是指虚拟的视图被保留在内存中 通过如reactDom这样的库与“真实”的dom 保持同步
-虚拟DOM是由JavaScript库在浏览器API之上实现的一种概念。
+虚拟DOM是由JavaScript库在浏览器API之上实现的一种概念
 
-#### 什么是“React Fiber”？
-fiber是React 16中新的和解引擎。它的主要目的是使虚拟DOM能够进行增量渲染。了解更多。
 
+## 总结
+本文为react概况，意在对react有个整理认知，其中的任意一条都值得深入研究，日后可能会针对某一个知识点单开文章～ 
 
 
 

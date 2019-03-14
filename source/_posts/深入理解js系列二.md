@@ -5,10 +5,12 @@ date: 2018/03/20
 tags: [js]
 toc: false
 comments: true
-categories: 前端
+categories: js
 ---
 
 [汤姆大叔的原文链接](http://www.cnblogs.com/TomXu/archive/2011/12/29/2290308.html)
+
+<!-- more -->
 ## 函数表达式 和函数声明
 
 #### 函数表达式

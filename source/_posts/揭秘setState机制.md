@@ -54,6 +54,7 @@ export default class SetState extends React.Component {
 
 假如结果与你心中的答案并不完全相同，那么你应该感兴趣这背后究竟发生了什么.
 
+<!-- more -->
 ## 了解setState
 
 1. setState是同步执行的 但是state并不一定会同步更新（异步更新）

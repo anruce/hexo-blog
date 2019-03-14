@@ -5,7 +5,7 @@ date: 2018/01/16
 tags: [js,issue]
 toc: false
 comments: true
-categories: 前端
+categories: js
 ---
 
 <!-- <blockquote class="blockquote-center">blah blah blah</blockquote> -->

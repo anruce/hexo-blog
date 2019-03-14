@@ -5,13 +5,15 @@ date: 2018/03/20
 tags: [js]
 toc: false
 comments: true
-categories: 前端
+categories: js
 ---
 
 
 [汤姆大叔的原文链接](http://www.cnblogs.com/TomXu/archive/2011/12/28/2286877.html)
 
+<!-- more -->
 ## 书写可维护的代码
+
 ```
 目标：可读的 一致的 可预测的 看上去就像是同一个人写的
 ```

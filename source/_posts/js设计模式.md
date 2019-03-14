@@ -5,7 +5,7 @@ date: 2018/01/16
 tags: [js,design_mode]
 toc: false
 comments: true
-categories: 前端
+categories: web
 ---
 
 
