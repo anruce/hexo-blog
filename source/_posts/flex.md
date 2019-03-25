@@ -10,8 +10,8 @@ categories:
 ## 前言
 过去，我们总是不得不忍受`float、display:table`这些布局方式带来的痛苦，不过现在是时候去拥抱一个更简洁的制作智能布局的现代语法 `Flexbox`
 ## Flexbox是什么
-根据规范中的描述可知道，`Flexbox`模块提供了一个有效的布局方式，即使不知道视窗大小或者未知元素情况之下都可以智能的，灵活的调整和分配元素和空间两者之关的关系
-也就是说 <font color="red">就是可以自动调整计算元素在容器空间中的大小</font>
+根据规范中的描述可知道，`Flexbox`模块提供了一个有效的布局方式，即使不知道视窗大小或者未知元素情况之下都可以智能的，灵活的调整和分配元素和空间两者之间的关系
+
 
 <!-- more -->
 ## 如何开始使用Flexbox
@@ -20,7 +20,7 @@ categories:
 
 就像这样儿，声明了`Flex`容器之后，一个`Flexbox`格式化上下文就立即启动了
 
-```html
+```
 <ul class="oul">
   <li>1</li>
   <li>2</li>
@@ -34,7 +34,7 @@ categories:
 
 声明`Flex容器`
 
-```css
+```
 .oul {
     //...
     display: flex
@@ -99,8 +99,8 @@ ul { flex-flow: row wrap; }
 
 ```css
 ul { justify-content: flex-start || flex-end || center || space-between || space-around }
-* flex-start：默认值 左对齐
-* flex-end：右对齐
+* flex-start 元素位于容器的开头。弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界。
+* flex-end 元素位于容器的结尾，弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界
 * center：居中对齐
 * space-between：让除了第一个和最一个Flex项目的两者间间距相同（两端对齐）
 * space-around：让每个Flex项目具有相同的空间
@@ -113,16 +113,16 @@ ul { justify-content: flex-start || flex-end || center || space-between || space
 和space-between有点不同，第一个Flex项目和最后一个Flex项目距Main-Axis开始边缘和结束边缘的的间距是其他相邻Flex项目间距的一半
 ![around](/images/flex/around.png)
 ### align-items
-它主要用来控制Flex项目在Y轴对齐方式
+它主要用来控制Flex项目在侧轴上的对齐方式
 
 ```css
 ul { align-items: flex-start || flex-end || center || stretch || baseline }
 
-* stretch 默认值 如果项目未设置高度或设为auto，Flex项目高度将占满整个容器的高度
-* flex-start 顶部对齐
-* flex-end  底部对齐
-* center 居中对齐
-* baseline 让所有Flex项目在Cross-Axis上沿着他们自己的基线对齐(项目的第一行文字的基线对齐)。
+* stretch 默认值 让所有的Flex项目高度和Flex容器高度一样。
+* flex-start 元素位于容器的开头。弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界。
+* flex-end 元素位于容器的结尾，弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界
+* center 元素位于容器的中心
+* baseline 让所有Flex项目在Cross-Axis上沿着他们自己的基线对齐
 ```
 
 **baseline**
@@ -130,8 +130,17 @@ ul { align-items: flex-start || flex-end || center || stretch || baseline }
 区别就在于`baseline`
 ![base](/images/flex/base.png)
 ### align-content
-`align-content`属性用于多行的Flex容器。它也是用来控制`Flex`项目在Flex容器里的排列方式，排列效果和`align-items`值一样，但除了`baseline`属性值，它的默认属性依然是`stretch`
 
+```
+ul { align-items: stretch|center|flex-start|flex-end|space-between|space-around}
+
+* stretch 默认值 元素被拉伸以适应容器
+* flex-start 元素位于容器的开头。弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界。
+* flex-end 元素位于容器的结尾，弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界
+* center 元素位于容器的中心
+* space-between：让除了第一个和最一个Flex项目的两者间间距相同（两端对齐）
+* space-around：让每个Flex项目具有相同的空间
+```
 **stretch**
 ![align-content](/images/flex/align-content.png)
 flex-end
@@ -203,33 +212,86 @@ Flex项目`2、3和4的order`值都是`0`。HTML源代码秩序并没有修改�
 ```
 
 ### flex-basis
-它可以指定`Flex`项目的初始大小。也就是`flex-grow和flex-shrink`属性调整它的大小以适应`Flex`容器之前的初始值
+它用于设置或检索弹性盒伸缩基准值
+`浏览器`根据这个属性，计算主轴是否有多余空间一般配合 `flex-wrap `一起使用，flex容器根据 `flex-basis` 计算是否需要换行
 
-`浏览器`根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小(可能是内容撑起来的)
 
-* 默认值是`auto`
-* flex-basis可以取任何用于width属性的任何值。比如 % || em || rem || px
-* 为0时也需要使用单位 即`flex-basis: 0px`不能写成`flex-basis:0`
+一些特性
 
-### flex属性
-`flex是flex-grow、flex-shrink和flex-basis三个属性的速记（简写）` 
+#### 1.它的属性值可以是**长度单位(em || rem || px)**或**百分比(%)**，<font color="red">百分比是按照父元素的width为标准</font>
+#### 2.默认值为 <font color="red">auto</font>  [MDN](https://drafts.csswg.org/css-flexbox/#flexibility)
 
-```css
-li {
-    flex: 0 1 auto;
-}
-相当于
-  li {
-      flex-grow: 0;
-      flex-shrink: 1;
-      flex-basis: auto;
+ ```
+取值为**auto**时，它的值就等于当前项的**width**（或者默认的大小，width没有设置的话）" 
+flex-basis:auto" 的含义是 "参照我的width和height属性
+ ```
+#### 当flex-item没有自身宽高，其默认大小由flex-basis决定
+即优先级： <font color="red">flex-basis > width(非auto)</font>
+
+```
+.oul2-li{
+      flex-basis: 200px;
+      width: 10px;
+      margin: 0px 4px;
+      background: red;
   }
-  顺序缩写为 GSB
+```
+![shiliflex1](/images/flex/shiliflex1.png)
+#### 4.当元素存在默认宽高（<font color="red">input</font>）
+并且设置了 `flex-basis`，那么它的初始大小`以固定宽高为下限`，如果`flex-basis `超过了固定宽高，那么以`flex-basis`设置大小为准，如果`flex-basis`比固定宽高小，那么以固定宽高为准
+
+```
+.Myinput {
+     background: greenyellow;
+     flex-basis: 200px;
+ }
+```
+![gfdsdf](/images/flex/gfdsdf.png)
+当将`flex-basis`设置的比默认宽度大
+
+![swqs](/images/flex/swqs.png)
+
+当将`flex-basis`设置的比默认宽度小 100
+![jnjjjuuu](/images/flex/jnjjjuuu.png)
+####  5.当元素存在 min-width[height] 或者 max-width[height]
+
+```
+如果 `flex-basis` 的值 大于 `min-width[min-height]`，`flex-item content`的值为 `flex-basis`
+如果`flex-basis `的值小于` min-width[min-height]` 那么`flex-item content`以`min-width[min-height]`计算
 ```
 
-**flex: 0 1 auto**
+![jsjjsjsjjjsjsjs](/images/flex/jsjjsjsjjjsjsjs.png)
+#### 6.元素设置`width[height]: auto;`
+CSS解析器对比两者的值，两者**谁大取谁**作为`item`的基本尺寸，如果一个`item`没有内容，flex-item 初始大小就会以`flex-basis`来决定
+但是如果`item`有了内容，且内容撑开的尺寸比`flex-basis`大，那么`flex-item`初始大小就会以`width[height]: auto; `来决定<br/>
+优先级：<font color="red">width[height]: auto == flex-basis</font>
 
-![qqqq](/images/flex/qqqq.png)
+```
+ <ul class="oul2">
+      <li class="li1">666666666666666666666666666666666666666666666666666666666666666666666666666666666666</li>
+      <li class="li2">77777</li>
+    </ul>
+    
+    .li1{
+    flex-basis: 100px;
+    margin-right: 5px;
+    background: greenyellow;
+    width: auto;
+}
+.li2{
+    flex-basis: 300px;
+    width: auto;
+    background: red;
+}
+
+.oul2{
+    display: flex;
+    list-style: none;
+    border: 1px solid #ccc;
+}
+```
+![uuxsuudhdusd](/images/flex/uuxsuudhdusd.png)
+
 
 ## 绝对和相对Flex项目
 绝对Flex项目的宽度只基于 flex 属性，而相对Flex项目的宽度基于内容大小
@@ -274,7 +336,80 @@ Flex项目的初始宽度是被自动计算的（`flex-basis: auto`），然后�
 
 `Flex`项目的初始宽度是零（`flex-basis: 0`），并且它们会伸展以适应可用空间。当有两到多个`Flex`项目的 `flex-basis` 取值为`0`时，它们会基于`flex-grow`值共享可用空间
 
-## flex布局与各种计算规则
+
+### flex组合属性
+flex是`flex-grow、flex-shrink和flex-basis`三个属性的速记（简写）顺序缩写为 GSB 
+
+#### 一些取值规律
+
+**当 flex 取值为一个非负数字，则该数字为 flex-grow 值，flex-shrink 取 1，flex-basis 取 0%，例如：flex: 1; 相当于**
+
+```
+li {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+}
+```
+⚠️ `flex-basis的`默认值为`auto`，为什么此时是`0%`？
+当你创建一个flexbox上下文而不给flex项目设置任何属性，此时的默认值
+![wwwaaaa111](/images/flex/wwwaaaa111.png)
+此时它是<font color="red">相对项目</font>
+一旦你设置了`flex:1`简写属性
+
+参考MDN所说
+![flexjianxie](/images/flex/flexjianxie.png)
+浏览器使其变成了<font color="red">绝对项目</font>
+
+**flex: auto;**
+
+```
+li {
+    
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+}
+```
+**当 flex 取值为一个长度或百分比，则视为 flex-basis 值，flex-grow 取 1，flex-shrink 取 1，有如下等同情况（注意 0% 是一个百分比而不是一个非负数字）**
+
+```
+.item-1 {flex: 0%;}
+.item-1 {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+}
+.item-2 {flex: 24px;}
+.item-1 {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 24px;
+}
+```
+**当 flex 取值为两个非负数字，则分别视为 flex-grow 和 flex-shrink 的值，flex-basis 取 0%，如下是等同的：**
+
+```
+.item {flex: 2 3;}
+.item {
+    flex-grow: 2;
+    flex-shrink: 3;
+    flex-basis: 0%;
+}
+```
+**当 flex 取值为一个非负数字和一个长度或百分比，则分别视为 flex-grow 和 flex-basis 的值，flex-shrink 取 1，如下是等同的：**
+
+```
+.item {flex: 2333 3222px;}
+.item {
+    flex-grow: 2333;
+    flex-shrink: 1;
+    flex-basis: 3222px;
+}
+```
+
+
+## 深入flex
 到这里 关于`Flex`的基础知识已经结束了,你可以用它们处理几乎任何问题
 但是
 <font color="red">Flexbox是如何弹性的计算子级项目的大小的，它有没有什么规则 </font>
@@ -310,85 +445,6 @@ CSS解析器会把 定义了 `display: flex;` 和 `display: inline-flex;` 的 `F
 子元素的尺寸为主轴方向上元素的的自身宽度 再加上自身的`margin 、 border 和 padding `
 
 W3C规范中介绍了  `flex-item content` 的计算规则
-
-1. flex-basis 的优先级比 width[height]: 非auto; 高
-
-```css
-.oul2-li{
-      flex-basis: 200px;
-      width: 10px;
-      margin: 0px 4px;
-      background: red;
-  }
-```
-![shiliflex1](/images/flex/shiliflex1.png)
-可以理解为 `flex-basis` 比设置`width[height]`的优先级高)
-
-### 元素存在默认宽高
-
-如果子元素有默认固定宽高（例如`input` 标签）、并且设置了 flex-basis，那么它的 `content`以 固定宽高为下限，如果`flex-basis `超过了固定宽高，那么`flex-basis`则成为其 `content`，如果`flex-basis`比固定宽高小，那么以固定宽高为 `content`
-
-在`flex`上下文添加一个class名为`Myinput`的`input`
-
-```css
- .Myinput {
-      background: greenyellow;
-      flex-basis: 200px;
-  }
-```
-![gfdsdf](/images/flex/gfdsdf.png)
-
-当将`flex-basis`设置的比默认宽度大
-
-![swqs](/images/flex/swqs.png)
-
-当将`flex-basis`设置的比默认宽度小 100
-![jnjjjuuu](/images/flex/jnjjjuuu.png)
-
-### 当元素存在 min-width[height] 或者 max-width[height]
-
-同上一条
-
-* 如果 `flex-basis` 的值 大于 `min-width[min-height]`，`flex-item content`的值为 `flex-basis`
-* 如果`flex-basis `的值小于` min-width[min-height]` 那么`flex-item content`以`min-width[min-height]`计算
-
-**demo**
-![jsjjsjsjjjsjsjs](/images/flex/jsjjsjsjjjsjsjs.png)
-
-### width[height]: auto; 优先级等于 flex-basis
-
-`CSS`解析器对比两者的值，两者`谁大取谁` 作为item的基本尺寸，如果一个`item`没有内容，`flex-item content`就会以`flex-basis`来决定
-
-测试
-
-```css
- <ul class="oul2">
-      <li class="li1">666666666666666666666666666666666666666666666666666666666666666666666666666666666666</li>
-      <li class="li2">77777</li>
-    </ul>
-    
-    .li1{
-    flex-basis: 100px;
-    margin-right: 5px;
-    background: greenyellow;
-    width: auto;
-}
-.li2{
-    flex-basis: 300px;
-    width: auto;
-    background: red;
-}
-
-.oul2{
-    display: flex;
-    list-style: none;
-    border: 1px solid #ccc;
-}
-```
-
-结果
-![uuxsuudhdusd](/images/flex/uuxsuudhdusd.png)
-
 
 ### 隐藏属性对 items-size 的影响
 
@@ -500,5 +556,9 @@ shrink比例 = flex-shrink * item-size / 之前的总和
 )
 [探索Flexbox](https://www.w3cplus.com/css3/flexbox-adventures.html)
 [理解flex](https://www.w3cplus.com/css3/flexbox-layout-and-calculation.html?from=groupmessage)
+
+
+
+
 
 

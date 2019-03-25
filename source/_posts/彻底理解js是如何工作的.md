@@ -175,7 +175,16 @@ What？ timer over 会在 promise1 promise2 之后执行？
 所有任务分为 `宏任务` 和 `微任务`
 
 * 宏任务（macrotask）：主代码块、setTimeout、setInterval等（可以看到，事件队列中的每一个事件都是一个 macrotask，现在称之为宏任务队列
-* 微任务（microtask）：Promise、process.nextTick等 在microtask中 process.nextTick 优先级高于 Promise
+* 微任务（microtask）：Promise、process.nextTick等 在microtask中 process.nextTick 优先级高于 Promise，它用来调度应在当前执行的脚本执行结束后立即执行的任务
+
+事件（任务）队列和宏任务和微任务的联系：
+
+* 一个事件循环有一个或者多个任务队列；
+* 每个事件循环都有一个microtask队列
+* macrotask队列就是我们常说的任务队列，microtask队列不是任务队列
+* 一个任务可以被放入到macrotask队列，也可以放入microtask队列
+* 当一个任务被放入microtask或者macrotask队列后，准备工作就已经结束，这时候可以开始执行任务了
+
 
 js的执行规则：
 
