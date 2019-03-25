@@ -9,12 +9,13 @@ categories:
 ---
 
 
-## 通过MDN认识下call和apply
+## 先来通过MDN认识下call和apply
 ### 语法
 `func.apply(thisArg, [argsArray])`
 ### 参数
 **thisArg**：可选的，`func`函数运行的时使用的`this`值
 
+<!-- more -->
 ⚠️ 
 
 * 如果这个函数处于<font color=red>非严格模式下</font> 指定其为`null` 或者 `undefined`时 this绑定会应用`默认规则`（<font color=red>这在[分析js指向问题](http://maying.ink/2019/03/11/this/#more)时有提到</font>）
@@ -29,7 +30,7 @@ categories:
 调用有指定this值和参数的函数的结果
 
 -------
-几个游泳的例子感受下apply的魔力
+几个有用的例子感受下apply的魔力
 
 **求数组最大最小值**
 
@@ -193,7 +194,7 @@ doSth.applyFn(student, [1, 2]);
 
 **.fn函数同名覆盖问题，`thisArg`对象上有`fn`，那就被覆盖了然后被删除了**
 
-那我们就找一个唯一值的函数名，那映入眼帘的就是`Math.ramdom`函数了
+那我们就找一个唯一值的函数名
 
 ```
     thisArg = new Object(thisArg);
