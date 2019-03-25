@@ -6,4 +6,8 @@ node_modules/
 public/
 .deploy*
 .idea
-themes
+themes/
+.deploy_git/
+*.log
+.settings/
+.idea/
