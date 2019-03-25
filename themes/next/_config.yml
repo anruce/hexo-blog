@@ -337,17 +337,12 @@ post_meta:
   categories: true
 
 # Post wordcount display settings
-# Dependencies: https://github.com/willin/hexo-wordcount
-post_wordcount:
-  item_text: true
-  totalcount: true
-  wordcount: true
-  min2read: true
-  separated_meta: true  
-
-# Post wordcount display settings
 # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
 symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
   separated_meta: true
   item_text_post: true
   item_text_total: false
@@ -375,13 +370,13 @@ wechat_subscriber:
 reward_settings:
   # If true, reward would be displayed in every article by default.
   # You can show or hide reward in a specific article throuth `reward: true | false` in Front Matter.
-  enable: false
+  enable: true
   animation: false
   comment: "您的支持将鼓励我继续创作 笔芯"
 
 reward:
-  wechatpay: /images/weixin.jpeg
-  alipay: /images/zhifubao.jpeg
+  wechatpay: /uploads/weixin.jpeg
+  alipay: /uploads/zhifubao.jpeg
   #wechatpay: /images/wechatpay.png
   #alipay: /images/alipay.png
   #bitcoin: /images/bitcoin.png
@@ -694,7 +689,7 @@ gitalk:
   client_secret: 13dfa6753dc053335af62a65d0b183787bcd7a24
   # client_id:  # Github Application Client ID
   # client_secret:  # Github Application Client Secret
-  admin_user:  # GitHub repo owner and collaborators, only these guys can initialize github issues
+  admin_user: MaYing929 # GitHub repo owner and collaborators, only these guys can initialize github issues
   distraction_free_mode: true # Facebook-like distraction free mode
   # Gitalk's display language depends on user's browser or system environment
   # If you want everyone visiting your site to see a uniform language, you can set a force language value
