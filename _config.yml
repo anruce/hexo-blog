@@ -100,6 +100,17 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: next
 
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+  separated_meta: true
+  item_text_post: true
+  item_text_total: false
+  awl: 4
+  wpm: 275
+  
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
 # livere_uid: your uid
