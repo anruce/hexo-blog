@@ -161,8 +161,8 @@ new bound(2,3) //this undefined (3) [1, 2, 3]s
 ```
 所以 ，当使用`new`调用的时候，`bind`的返回值函数`bound`内部要模拟实现`new`实现的操作,似曾相识了
 
-###bindFn函数的升级
-区分是否是new调用 new调用，需要在bind函数返回值函数里实现模拟`new`的操作
+### bindFn函数的升级
+区分是否是new调用 当使用new调用需要在bind函数返回值函数里实现模拟`new`的操作
 
 ```
 Function.prototype.bindFn = function bind(thisArg){
