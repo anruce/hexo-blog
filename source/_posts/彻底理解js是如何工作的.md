@@ -304,7 +304,7 @@ js代码在执行的时候 它都是在执行上下文中运行
 * 执行阶段
 
 
-代码执行钱 执行上下文经历创建阶段 会发生
+代码执行栈 执行上下文经历创建阶段 会发生
 1. this值的制定
 2. 创建词法环境组件
 3. 创建变量环境组件
@@ -314,53 +314,6 @@ js代码在执行的时候 它都是在执行上下文中运行
 最后的最后
 
 JavaScript 是单线程语言，决定于它的设计最初是用来处理浏览器网页的交互。浏览器负责解释和执行 JavaScript 的线程只有一个（所以说是单线程），即JS引擎线程，但是浏览器同样提供其他线程，如：事件触发线程、定时器触发线程等
-
-来个复杂点的题目 如果你觉得有困难 那就翻上去再看一面文章吧 一定能找到答案
-
-```
-process.nextTick(()=>{
-    console.log('process 1')
-})
-
-setTimeout(()=>{
-    console.log('setTimeout 1')
-    process.nextTick(()=>{
-        console.log('process 2')
-        setTimeout(()=>{
-            console.log('setTimeout 4')
-        })
-    })
-})
-
-setTimeout(()=>{
-    console.log('setTimeout 2')
-    process.nextTick(()=>{
-        console.log('process 4')
-        setTimeout(()=>{
-            console.log('setTimeout 5')
-        })
-    })
-})
-
-setTimeout(()=>{
-    console.log('setTimeout 3')
-})
-
-process.nextTick(()=>{
-    console.log('process 3')
-})
-
-// 结果：
-process 1
-process 3
-setTimeout 1
-setTimeout 2
-setTimeout 3
-process 2
-process 4
-setTimeout 4
-setTimeout 5
-```
 
 
 

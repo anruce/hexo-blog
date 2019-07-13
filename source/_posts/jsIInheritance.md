@@ -260,41 +260,6 @@ console.log('otherPerson1',otherPerson1.friends)// ["xiaohong", "xiaoming", "wq
 * 对于引用类型值的属性依然是 共享状态的，这相当于创建了两个person的副本
 
 
--------
-
-## 寄生式继承
-寄生式继承是与原生继承紧密相关的一种思路 同一个作者提出来的
-
-<font color="red">核心原理：</font>创建一个仅用于封装继承过程的函数 该函数在内部以某种方式来增强对象 最后再像真的是他做了所有工作一样返回对象
-
-todo
-**通过寄生方式，砍掉父类的实例属性，这样，在调用两次父类的构造的时候，就不会初始化两次实例方法/属性，避免的组合继承的缺点**
-
-
-```
-var person = {
-  name:'yishu',
-  friends:['xiaohong','xiaoming']
-}
-
-function createAnther(original){
-   var clone = Object(original);
-   clone.sayHi = function(){
-     alert('hi');
-   };
-   return clone;
-
-}
-
-var antherPerson = createAnther(person);
-antherPerson.sayHi();
-
-```
-
-### 缺点
-同构造函数 不能进行函数复用 降低效率
-
-
 ## 寄生式组合继承（最理想的继承范式）
  
 <font color="red">核心原理：</font>
@@ -309,7 +274,7 @@ antherPerson.sayHi();
 function inhertPrototype(SubType, SuperType){
 
   var prototype = Object.create(SuperType.prototype); //创建对象
-  prototype.constructor = SubType; //增强对象 弥补因重写原型而失去默认的constructor属性
+  prototype.constructor = SubType; //如果你创建了一个新对象并替换了函数默认的.prototype对象引用,那么新对象不会自动获得.constructor属性
   SubType.prototype = prototype;//指定对象
 }
 

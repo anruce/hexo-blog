@@ -174,6 +174,39 @@ bar.call(obj2) // 2 硬绑定的bar不可能再修改它的this
 由于硬绑定是一种常用的模式，所以ES5提供了内置的方法
 `Function.prototype.bind`
 
+
+了解了用法 我们来看一个demo
+
+```
+let a = {};
+let fn = function(){
+  console.log(this)
+}
+fn.bind().bind(a)() // ?
+```
+答案应该是`window` 你回答对了吗
+
+事实上 我么可以改写一下
+
+它类似于
+
+```
+var a = {};
+let fn = function(){console.log(this)}
+let fn2 = function fn1(){
+  return function(){
+    return fn.apply();
+  }.apply(a)
+}
+
+fn2() //window
+```
+
+这样儿结果能猜到了吗
+
+fn中的this永远由`第一个bind`决定 所以 结果永远是window
+
+
 #### new绑定
 
 ```

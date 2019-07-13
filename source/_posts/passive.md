@@ -64,10 +64,9 @@ wnidow.addEventListener('touchmove', func, { passive: true })
 ### 解决方案
 
 那么我们如何来解决这个问题 即不要让浏览器忽略掉e.preventDefault()？
-目前有两个方案
+
 
 1. window.addEventListener(‘touchmove’, func, { passive: false })
-2. 应用 CSS 属性 touch-action: none; 这样任何触摸事件都不会产生默认行为，但是 touch 事件照样触发(模拟器上挺好使 移动端貌似没卵用)
 
 设置passive: false之后的结果
 android
@@ -78,6 +77,7 @@ ios
 ![jsworke](/images/passive/webhou.gif)
 问题完美解决
 
+```
 你看到这里可以结束了 如果你还想再了解一点点
 👇👇👇👇
 
@@ -101,10 +101,21 @@ addEventListener(type, listener[, options ])
 ```
 addEventListener(type, listener, {
     capture: false, 等价于 useCapture 默认值false
-    passive: false,
+    passive: false, 是否让阻止默认事件失效 true:失效 false：不失效
     once: false //表明该监听器是一次性的，执行一次后就被自动 removeEventListener 掉，还没有浏览器实现它 默认值false
 })
 ```
+
+还想再说一点 那我设置了 passive的事件 这么移除呢 这里给出了方法
+
+```
+你可以直接省略第三个参数
+window.removeEventListener(‘touchmove’, func)
+
+如果添加了 第一个参数 capture 可以这样移除
+
+window.removeEventListener(‘touchmove’, func, true)
+window.removeEventListener(‘touchmove’, func, {capture :true})
 
 ### 为什么会有 passive这个概念
 
