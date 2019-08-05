@@ -296,7 +296,7 @@ class Tabs extends React.Component {
 - 通用组件
     - UI组件
     - 逻辑组件
-- 高阶组件（Higher-Order）
+- 高阶组件（HOC）
     
 
 下面具体介绍一个各种组件
