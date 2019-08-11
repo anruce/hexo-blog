@@ -120,17 +120,17 @@ symbols_count_time:
 
 deploy:
   - type: git
-    repo: https://github.com/MaYing929/MaYing929.github.io.git
+    repo: https://github.com/maying2020/maying2020.github.io.git
     branch: master
     message: '站点更新: {{ now("YYYY-MM-DD HH:mm:ss") }}'
 
-live2d:
-  model:
-    use: live2d-widget-model-z16
+# live2d:
+  # model:
+    # use: live2d-widget-mod`el-z16
   # model: tororo 猫
   # model: haru  女孩2
   # model: nico
-  bottom: -30
+  # bottom: -30
 
 # Extensions
 ## Plugins: http://hexo.io/plugins/
