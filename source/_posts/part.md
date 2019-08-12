@@ -15,7 +15,8 @@ categories: 前端
 
 ## 文章开始之前，明确本文的边界
 - 面试官通常会问：写过前端通用组件吗
-- 模块化与组件化的前世今生
+- 从前端工程谈到组件化开发
+- 组件化实践
 - 组件的设计原则
 - 组件的职能划分
 - 进行组件职能划分的利弊
@@ -36,119 +37,111 @@ categories: 前端
 
 emm..是的吗？
 
-# 模块化与组件化的前世今生
+# 从前端工程谈到组件化开发
 
-谈到组件化不得不提模块化，从某种意义上来说模块化和组件化并不在一个维度上，但却又有千丝万缕的联系
 
-## 模块化
+前端工程经历的三个阶段
 
- 模块一般指能够独立拆分且通用的代码单元
+## 1. 库/框架选型
 
-### 几个特点
+![image](http://pw1zvypwt.bkt.clouddn.com/ku.png)
 
-- 让软件按模块单独开发，各模块通常都用一个标准化的接口来进行通信
-- 把系统划分多个模块有助于将耦合减至最低，让代码维护更加简单
-- 任何一个类库实际上都是一个模块
-- 任何语言都有模块化的思想，如Java 的 import、C++的include、Node的require
-- js恰好经历了从无到有的过程
+随着三大框架的崛起，现在基本上没有人完全从0开始做网站，解放了不少生产力，合理的技术选型可以为项目节省许多工程量
 
-### js的模块化发展历程
+## 2. 简单构建优化
+![image](http://pw1zvypwt.bkt.clouddn.com/tools.png)
 
-#### 1. 没有模块化
 
-最开始前端承载的任务并不多，表单验证基本上是它的全部，js基本上都是写到一个文件或者是直接写到jsp，smarty等模版里
+随着三大框架的崛起，现在基本上没有人完全从0开始做网站，解放了不少生产力，合理的技术选型可以为项目节省许多工程量
 
-写到js文件
+## 3. JS/CSS模块化开发
 
-```
-<script src="1.js"></script>
-```
+![image](http://pw1zvypwt.bkt.clouddn.com/jsmokuaihua.png)
 
-#### MVC时期
+解决了基本开发效率和运行效率之后，开始考虑维护效率了，毕竟应用会不断更新
 
-由于早期动态页面时期的业务逻辑都写在页面上，随着逻辑的增多，页面越来越复杂，维护起来也越来越难
+分而治之（以分解降低复杂度）是软件工程中的重要思想，是复杂系统开发和维护的基石，而模块化就是前端的分治手段
 
-整个Web应用的开发轻前端重后端，标签也都是其他语言代码编写的，只能使用，难以维护
+> 将一个大问题，不断的拆解为各个小问题进行分析研究，然后再组合到一起(分而治之原则)
 
-目录结构是这个样子的
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/11.png)
+![image](http://pw1zvypwt.bkt.clouddn.com/jimu)
+
+像搭积木这样儿，将系统拆分为不同的组件，各自实现，然后再组装在一起
 
 
 ```
-<div class="ency-list">
-   <a href=" 'id']}/?channel={$smarty.get.channel}&from={$smarty.get.from}" class="txt"  abevent="article_wiki_list#type={$abevent['first_category'][$category['id']]}/rank={$key+1}/articleid={$article['id']}">{$article['title']}</a >
-   {if $article['labels']}
-        {foreach from=$article['labels'] item=label }
-            <a href="/baike/label_articles/{$label['id']}/?channel={$smarty.get.channel}&from={$smarty.get.from}" class="icon">{$label['name']}</a >
-        {/foreach}
-   {/if}                
-</div>
+很多人觉得模块化开发的意义是复用，在我看来，模块化开发的最大价值应该是分治，这就意味着不管你将来是都要复用这部分代码，都有要将其分治为一个模块的理由
 ```
 
-#### 2. 前端AJAX时期  JS大行其道
+### 模块化的方案
 
-出现了很多JS的框架（JQuery-UI，easy-UI）
-前端能做更多事情了，单文件维护代码已然过于沉重，但是由于JS天生没有模块化的概念又不像后端语言自带模块功能，所以一直在寻求突破
-大概经历了这么几个阶段
-
-- 将重复性的代码提取出来，封装函数（<font color=red>全部变量冲突风险，人工维护依赖关系复杂</font>）
-- 命名空间
-- 闭包封装
-
-举个栗子 找到尘封多年的代码
+- JS模块化
 
 ```
-$(function(){
-    var iframe_id;
-    $(".car-search-fix").popup_frame({
-        src:$("#js-hidden-value").data("maintenance_entrance_link"),
-        shadowId:".mask",
-        beforeShow:function(iframeid){
-            iframe_id = iframeid;
-            show_loading();
-        }
-})
+单位函数->对象->闭包函数->CommonJS/AMD/CMD->ES6 Module
 ```
 
-#### 3. Node来了，它真的来了，它带着模块化方案来了
+- CSS模块化
 
-1. node选择commonJS作为它的模块加载方案，给前端的模块化提供了思路 
-2. npm生态，让 node 有了自己的模块仓库
+```
+css->less/sass/postcss 等预处理器的支持下实现的
+```
 
-#### 4. 模块化方案
 
-1. 模块化规范出现 Commonjs，AMD，CMD
-2. ES6的模块化方案 import/export
 
-自此js正式有了模块化官方规范
+## 4. 组件化开发（今天要讲的）
 
-### 模块化的不足
+当我们要开发一款完整的web应用，前端将面临着更多的工程问题
+- 大体量：多功能、多页面、多状态、多系统；
+- 大规模：多人甚至多团队合作开发
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/2.png)
+光有CSS/JS的模块化是不够的，对于UI组件的分治也比较迫切
 
-- 页面逻辑过于过程
+### 组件化开发模式下
 
-随着页面逻辑越来越复杂，这条“过程线”越来越长，并且越来越绕加之缺少规范约束，其他项目成员根据各自需要，在“过程线”加插各自逻辑，最终这个页面的逻辑变得难以维护
+![image](http://pw1zvypwt.bkt.clouddn.com/sss.png)
 
-- 创建和挂载对象的方式可不止DOM，API，还有HTML语言，模块化思想如何融入进HTML语言
+#### 可以得出
+- 每个组件对应一个工程目录，组件所需的各种资源都在这个目录下就近维护；（最具工程价值）
+页面上的每个独立的可视/可交互区域视为一个组件；
+- 由于组件具有独立性，因此组件与组件之间可以 自由组合；
+- 页面只不过是组件的容器，负责组合组件形成功能完整的界面；
+- 当不需要某个组件，或者想要替换组件时，可以整个目录删除/替换
 
-### 尝试解决
 
-#### 页面结构模块化
+### 现在的开发粒度
 
-为了解决面向过程的问题，出现过很多解决方案，在今天看来无非在向页面结构模块化靠近
+![image](http://pw1zvypwt.bkt.clouddn.com/niubi.png)
 
-抽象一层容器，页面需要不同的零件组装，将事件处理，获取数据，样式处理以页面为单位封装成一个model块，每个 Model 都带有各自的数据，模板，逻辑，已经算是一个完整的功能单元
+#### 如下
 
-现在基于Model的页面结构开发，已经带有**组件化**的味道了，此时我们的目录结构变为了
+- 模块：按照项目业务内容来划分，代码分开就是模块
+- 组件：按照一些小功能的通用性和可复用性来抽象组件
+- 组件包含了template、style 和 script，而它的 Script 可以由各种模块组成
+- 模块化的诉求是解耦，组件化的诉求是好用，两者的侧重点不同
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/3.png)
 
-已经有很大的变化了
 
-## 组件化的实践
 
-### N年前微软的组件化的解决方案 HTML Component
+## 小结
+
+### 从整体概念来讲
+- 模块化是一种分治的思想
+- 组件化是模块化思想的实现手段
+
+### 从复用的角度来讲
+- 模块一般是项目范围内的，比如一个项目划分为子系统、模块、子模块，
+- 而组件可以是提出来跨项目复用的
+
+### 从历史发展角度来讲
+随着前端开发越来越复杂、对效率要求越来高，由项目级模块化开发，进一步提升到通用功能组件化开发，模块化是组件化的前提
+
+我们今天重点讲下第四部分
+<font color="red">在组件化开发模式下，我们应该怎么做</font>
+
+# 组件化的实践
+
+## N年前微软的组件化的解决方案 HTML Component
 
 历史中总有些遗珠事实上微软提供了组件化的解决方案，名为HTML Component
 ![jsworke](http://pw1zvypwt.bkt.clouddn.com/4.jpg)
@@ -172,11 +165,11 @@ $(function(){
 - 可相互组合（组件正在强大的地方，组件间组装整合）
 - 接口规范化（组件接口有统一规范，或者是生命周期的管理）
 
-### 三大框架出现
+## 三大框架出现
 
 今天的前端生态里面 React，Angular和Vue三分天下，即使它们定位不同，但核心的共同点就是提供了组件化的能力，算是目前是比较好的组件化实践
 
-#### 1. Vue.js采用了JSON的方法描述一个组件
+### 1. Vue.js采用了JSON的方法描述一个组件
 
 ```
 import PageContainer from './layout/PageContainer'
@@ -209,7 +202,7 @@ export default {
 </style>
 ```
 
-#### 2. React.js发明了JSX，把CSS和HTML都塞进JS文件里
+### 2. React.js发明了JSX，把CSS和HTML都塞进JS文件里
 
 ```
 class Tabs extends React.Component {
@@ -228,7 +221,7 @@ class Tabs extends React.Component {
 }
 ```
 
-#### Angular.js选择在原本的HTML上扩展
+### Angular.js选择在原本的HTML上扩展
 
 ### 小结
 
@@ -536,6 +529,8 @@ TODO
 或者说 你心中的组件是什么样子的？
 
 # 我是如何思考的
+
+上面组件设计准则，仅仅描述了一种开发理念，也可以认为是一种开发规范，倘若你认可这规范，对它的分治策略产生了共鸣，那我们就可以继续聊聊它的具体实现了
 
 1. 开始coding之前一定会进行<font color="red">需求分解</font>
 
