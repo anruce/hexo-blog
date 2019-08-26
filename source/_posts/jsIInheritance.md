@@ -1,6 +1,6 @@
 ---
-title: 细说JS继承的几种方式
-date: 2019-02-27 16:16:28
+title: 你不知道的js系列-细说JS继承
+date: 2019-08-25 16:16:28
 tags:
 categories:
 - js
