@@ -1,5 +1,5 @@
 ---
-title: 你不知道的js系列-细说JS继承
+title: 你不知道的JS系列-细说JS继承
 date: 2019-08-25 16:16:28
 tags:
 categories:
