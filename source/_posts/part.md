@@ -46,20 +46,20 @@ emm..是的吗？
 
 ## 1. 库/框架选型
 
-![image](http://pw1zvypwt.bkt.clouddn.com/ku.png)
+![image](http://cdn.anruence.com/ku.png)
 确定技术选型，为项目节省许多工程量
 后来三大框架的横空出世，解放了不少生产力
 
 ## 2. 简单构建优化
 
-![image](http://pw1zvypwt.bkt.clouddn.com/tools.png)
+![image](http://cdn.anruence.com/tools.png)
 
 解决完开发效率，还需要兼顾运行性能，
 故而选择某种构建工具，对代码进行压缩，校验，之后再以页面为单位进行简单的资源合并
 
 ## 3. JS/CSS模块化开发
 
-![image](http://pw1zvypwt.bkt.clouddn.com/jsmokuaihua.png)
+![image](http://cdn.anruence.com/jsmokuaihua.png)
 
 解决了基本开发效率和运行效率之后，开始考虑维护效率了
 
@@ -90,7 +90,7 @@ css模块化是在less，sass等预处理器的支持下实现的
 模块化强调的是**拆分**，无论是从业务角度还是从架构、技术角度，模块化首先意味着将代码、数据等内容按照其职责不同分离
 
 单纯的横向拆分业务功能模块有一些问题
-![](http://pw1zvypwt.bkt.clouddn.com/2.png)
+![](http://cdn.anruence.com/2.png)
 
 - 面向过程的代码 随着业务的发展不利于维护
 
@@ -113,11 +113,11 @@ css模块化是在less，sass等预处理器的支持下实现的
 
 #### 页面结构模块化
 
-![image](http://pw1zvypwt.bkt.clouddn.com/jimu)
+![image](http://cdn.anruence.com/jimu)
 简单来说就是把页面想象成乐高机器人，需要不同零件组装，然后将各个部分拼到一起
 
 落实到实际开发中像这样
-![](http://pw1zvypwt.bkt.clouddn.com/jiegouhua.png)
+![](http://cdn.anruence.com/jiegouhua.png)
 
 我们可以发现
 
@@ -132,7 +132,7 @@ css模块化是在less，sass等预处理器的支持下实现的
 
 早在N年前微软提出过一套解决方案，名为`HTML Component`
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/4.jpg)
+![jsworke](http://cdn.anruence.com/4.jpg)
 
 事实上已经是一个比较完整的组件化方案了，但最后却没能进入标准，从今天的角度看，它可以说是生不逢时
 
@@ -229,7 +229,7 @@ app.controller('formCtrl', function($scope) {
 
 ### 标准下的资源整合
 
-![image](http://pw1zvypwt.bkt.clouddn.com/sss.png)
+![image](http://cdn.anruence.com/sss.png)
 
 #### 具有以下特点
 - 每个组件对应一个目录，组件所需的各种资源都在这个目录下就近维护；（最具软件工程价值）
@@ -240,7 +240,7 @@ app.controller('formCtrl', function($scope) {
 
 ### 应用结构图
 
-![image](http://pw1zvypwt.bkt.clouddn.com/niubi.png)
+![image](http://cdn.anruence.com/niubi.png)
 
 
 - 分子是由原子组成的，分子分成原子，原子也可以重新组合成新的分子
@@ -308,7 +308,7 @@ Single Point Of Truth，就是尽量不要重复代码，出自《The Art of Uni
 5. **无环依赖原则(ADP)**
 
 设计不当导致环形依赖示意图
-![image](http://pw1zvypwt.bkt.clouddn.com/1111111111.png)
+![image](http://cdn.anruence.com/1111111111.png)
 
 **影响**
 
@@ -324,7 +324,7 @@ Single Point Of Truth，就是尽量不要重复代码，出自《The Art of Uni
 
 创建一个共同依赖的新组件
 
-![image](http://pw1zvypwt.bkt.clouddn.com/xiaochu.png)
+![image](http://cdn.anruence.com/xiaochu.png)
 
 
 
@@ -400,7 +400,7 @@ Single Point Of Truth，就是尽量不要重复代码，出自《The Art of Uni
 ## 容器型组件
 一个容器性质的组件，一般当作一个业务子模块的入口，比如一个路由指向的组件
 
-![image](http://pw1zvypwt.bkt.clouddn.com/RONGQIZUJIAN.png)
+![image](http://cdn.anruence.com/RONGQIZUJIAN.png)
 
 
 ### 特点
@@ -433,7 +433,7 @@ Single Point Of Truth，就是尽量不要重复代码，出自《The Art of Uni
 
 主要表现为组件是怎样渲染的，就像一个简单的模版渲染过程
 
-![image](http://pw1zvypwt.bkt.clouddn.com/zhanshixing.png)
+![image](http://cdn.anruence.com/zhanshixing.png)
 
 ### 特点
 
@@ -503,14 +503,14 @@ Single Point Of Truth，就是尽量不要重复代码，出自《The Art of Uni
 
 通常是根据最小业务状态抽象而出，有些业务组件也具有一定的复用性，但大多数是一次性组件
 
-![image](http://pw1zvypwt.bkt.clouddn.com/yewu.png)
+![image](http://cdn.anruence.com/yewu.png)
 
 ## 通用组件
 可以在一个或多个APP内通用的组件
 ### UI组件
 - 界面扩展类组件，比如弹窗
 
-![image](http://pw1zvypwt.bkt.clouddn.com/UI.png)
+![image](http://cdn.anruence.com/UI.png)
 
 特点：复用性强，只通过 props、events 和 slots 等组件接口与外部通信
 
@@ -538,7 +538,7 @@ Single Point Of Truth，就是尽量不要重复代码，出自《The Art of Uni
 
 用一张图来表示
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/hoc.png)
+![jsworke](http://cdn.anruence.com/hoc.png)
 
 React中高阶组件是比较常用的组件封装形式，Vue官方内置了一个高阶组件[keep-alive](https://github.com/vuejs/vue/blob/dev/src/core/components/keep-alive.js)，但并未推荐使用HOC :(
 
@@ -552,18 +552,18 @@ React中高阶组件是比较常用的组件封装形式，Vue官方内置了一
 
 品牌车系滑动的动画
 
-![](http://pw1zvypwt.bkt.clouddn.com/reacthoc.png)
+![](http://cdn.anruence.com/reacthoc.png)
 
 
 ## 各类组件协同组成业务模块
 
-![image](http://pw1zvypwt.bkt.clouddn.com/MOKUAITU.png)
+![image](http://cdn.anruence.com/MOKUAITU.png)
 
 ## 容器/展示组件
 
 对比图
 
-![image](http://pw1zvypwt.bkt.clouddn.com/rongqitu.png)
+![image](http://cdn.anruence.com/rongqitu.png)
 
 ### 引入容器组件的概念只是一种更好的组织方式
 
@@ -739,7 +739,7 @@ React中高阶组件是比较常用的组件封装形式，Vue官方内置了一
 这是最容易想到的方法，当一个组件渲染了很多元素，就需要尝试分离这些组件的渲染逻辑
 我们以掘金页面为例
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/5.png)
+![jsworke](http://cdn.anruence.com/5.png)
 
 大体上看，可以分为Part1，Part2，Part3
 
@@ -828,7 +828,7 @@ React中高阶组件是比较常用的组件封装形式，Vue官方内置了一
 
 更具代表性的示例图
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/6.png)
+![jsworke](http://cdn.anruence.com/6.png)
 
 - UI差异在哪里定义？
 
@@ -865,7 +865,7 @@ React中高阶组件是比较常用的组件封装形式，Vue官方内置了一
 
 组件设计规则明明白白写着我们要遵循单一职责原则，这也带来了上文聊过的<font color="red">过度抽象（组件化）</font>的问题，我们结合具体的业务聊一下
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/7.png)
+![jsworke](http://cdn.anruence.com/7.png)
 
 
 要实现徽章组件，它有两部分组成
@@ -885,12 +885,12 @@ React中高阶组件是比较常用的组件封装形式，Vue官方内置了一
 
 ### 某二手车网站体现其细粒度的例子
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/1.gif)
+![jsworke](http://cdn.anruence.com/1.gif)
 
 思考，如果让你实现你会如何设计...
 我当初是这么设计的
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/8.png)
+![jsworke](http://cdn.anruence.com/8.png)
 
 index.js(react)
 
@@ -927,7 +927,7 @@ Brand.js(react)
 
 FlexLayout.js(react)
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/9.png)
+![jsworke](http://cdn.anruence.com/9.png)
 
 这个示例几乎涵盖了所有的规则
 
@@ -935,7 +935,7 @@ FlexLayout.js(react)
 - 入口组件是容器组件，事实上把它当做一个规则就行了，业务逻辑的载体
 - 除了容器组件外，其他的组件都被抽成公用的了，二手车平台类似的场景非常多
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/10.png)
+![jsworke](http://cdn.anruence.com/10.png)
 
 - 卖车平台类似的图文混排多且形态各不相同，应用场景广泛，抽！UI差异消化在组件内部，参考FlexLayout.js，给定default props
 - 可提取的组件过多（业务驱动）导致通讯困难如何解决？ 那说明你需要新增可管理状态的容器组件，上例中Brand，Series也是容器组件，负责管理子组件的大小事宜
@@ -956,13 +956,13 @@ FlexLayout.js(react)
 
 某一天，你接到这样儿的需求
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/12.png)
+![jsworke](http://cdn.anruence.com/12.png)
 
 开心，简单，三下五除二写完了
 
 突然有一天又有这样儿的需求
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/13.png)
+![jsworke](http://cdn.anruence.com/13.png)
 
 emm..可定制？之前的select没法用了，怎么做？要修改上一个或者再写一个吗？
 一旦出现了这种情况，证明之前的组件需要重新设计了
@@ -977,7 +977,7 @@ emm..可定制？之前的select没法用了，怎么做？要修改上一个或
 
 List组件
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/14.png)
+![jsworke](http://cdn.anruence.com/14.png)
 
 父组件🌰(vue)及slot
 
@@ -1003,13 +1003,13 @@ export const Status = {
 
 又有一个栗子(vue)
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/15.png)
+![jsworke](http://cdn.anruence.com/15.png)
 
 - Dialog只负责基础的逻辑，交出控制权给到业务，至于你的业务需要什么，在容器组件（业务逻辑层）去处理
 
 忍不住放上磐石业务的反面例子
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/16.png)
+![jsworke](http://cdn.anruence.com/16.png)
 
 难用无非是两方面的问题
 1. 不肯移交控制权
@@ -1025,7 +1025,7 @@ export const Status = {
 其实一开始，我并没有专门去套用设计模式，完全是业务驱使
 你一定见到过这样儿的
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/17.png)
+![jsworke](http://cdn.anruence.com/17.png)
 
 一旦这样儿的逻辑多了，那是不是就跟业务耦合了，跟业务耦合多了，那组件自然没有什么通用性了，即使我们不考虑到通用性，那写的累吧？
 
@@ -1052,7 +1052,7 @@ export const Status = {
 
 像磐石这种底层的业务支持系统，离不开大量的列表，查询，编辑，详情等，我一般会花30秒搭好架子，像但不限于下面这种
 
-![jsworke](http://pw1zvypwt.bkt.clouddn.com/18.png)
+![jsworke](http://cdn.anruence.com/18.png)
 
 - index:模块入口（承担容器职责）
 - api：整块业务的API
@@ -1071,15 +1071,15 @@ export const Status = {
 
 采购模块结构图
 
-![image](http://pw1zvypwt.bkt.clouddn.com/2222323232323.png)
+![image](http://cdn.anruence.com/2222323232323.png)
 
 Form
 
-![image](http://pw1zvypwt.bkt.clouddn.com/edit.png)
+![image](http://cdn.anruence.com/edit.png)
 
 Edit
 
-![image](http://pw1zvypwt.bkt.clouddn.com/form.png)
+![image](http://cdn.anruence.com/form.png)
 
 无论有多少种状态，只在edit这层容器维护
 
