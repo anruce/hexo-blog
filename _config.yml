@@ -120,7 +120,7 @@ symbols_count_time:
 
 deploy:
   - type: git
-    repo: https://github.com/maying2020/maying2020.github.io.git
+    repo: git@github.com:maying2020/maying2020.github.io.git
     branch: master
     message: '站点更新: {{ now("YYYY-MM-DD HH:mm:ss") }}'
 
