@@ -32,6 +32,7 @@ Facebook工程师率先提出RESTful架构体系的替代方案
 接下来 让我们站在巨人的肩膀上，由浅至深聊聊被称之为面向未来的API的-GraphQL
 
 <!-- more -->
+
 # 明确本文的边界
 本文主要介绍接触GraphQL这段时间，觉得必须要掌握的一些核心 适合以下人群
 
@@ -253,7 +254,7 @@ GraphQL有三种请求方式
 - mutation(修改)
 - subscribe(订阅)
 
-GraphQL的核心依赖于简单的GET或POST请求来将数据往返于客户端，而GraphQL只是一个经过修饰的GET或POST请求，通过```https://myapp.com/graphql```
+GraphQL的核心依赖于简单的GET或POST请求来将数据往返于客户端，而GraphQL只是一个经过修饰的GET或POST请求，通过 https://myapp.com/graphql
 之类的URL发送到GraphQL服务器
 
 
@@ -282,22 +283,24 @@ GraphQL的核心依赖于简单的GET或POST请求来将数据往返于客户端
 可以在resolver获取真正的数据
 ```
 
+
 ## 资源路径图
 
 ![image](http://cdn.anruence.com/ziyuanlujing.png)
 
-==客户端 Schema 本质上就是一段字符串，服务端如何识别并响应这段字符串？==
+客户端 Schema 本质上就是一段字符串，服务端如何识别并响应这段字符串？
 
 ## 服务端执行过程
 ![image](http://cdn.anruence.com/%E6%9C%8D%E5%8A%A1%E7%AB%AF.png)
 
-拿到客户端字符串之后，依赖官方类库```graphql-js```服务端具体执行经历三个阶段
+拿到客户端字符串之后，依赖官方类库graphql-js,服务端具体执行经历三个阶段
 
 - 解析：逐字符扫描，如果不符合服务端定义的AST规范，解析过程会直接跑出语法异常，当然了，是结构化报错
 - 校验：发起了查询，GraphQL会解析我们的查询语句，确保啊我们查询的结构是存在的，参数是足够的，类型是一致的，任何环节出了问题，都将返回错误信息
 - 执行：验证通过后，GraphqL会根据query语句包含的字段结构一一触发对应的Resolver函数，获取查询结果，也就是说 如果前端没有查询某个字段，就不会触发该字段对应的Resolver函数，也就不会产生对数据的获取行为
 
 注：如果Reaolver返回的数据结构，大于Schema里描绘的结构，那么多出来的部分会被忽略，这是一个合理的设计，我们可以通过控制Schema 来控制前端的数据访问权限，防止意外的将用户的隐私信息泄漏出去 
+
 
 # 阻碍你使用GraphQL的N个问题
 既然GraphQL那么方便，为啥没有大火呢？
