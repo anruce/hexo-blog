@@ -47,9 +47,11 @@ Facebook工程师率先提出RESTful架构体系的替代方案
 - 重新思考RESTful
 - what GraphQL
 - RESTful & GraphQL
-- why GraphQL
 - how GraphQL
+- GraphQL组成链路
 - 阻碍你使用GraphQL的N个问题
+- 现有应用的接入方式
+- GraphQL不足
 - 基于GraphQL的社区解决方案
 - 小结
 
@@ -202,7 +204,6 @@ GraphQL的出现就是为了解决RESTful的痛点
 
 到这里 我们看到了GraphQL 原则上的可行性
 
-# why GraphQL
 # How GraphQL
 接下来 趁热打铁 来聊聊怎么用GraphQL
 
