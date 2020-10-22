@@ -1,0 +1,117 @@
+---
+title: 网易与淘宝移动端适配工作流思考一
+date: 2017/08/9
+tags: [mobile]
+toc: false
+---
+最近尝试了解了一些移动端的概念
+得空总结了网易与淘宝的一些适配方案，为后续工作记录一下
+<!--more-->
+##网易移动端适配方案
+要点：
+```
+* 网易页面上html的font-size不是预先通过媒介查询在css里定义好的，而是通过js计算出来的
+* 为了方便，取一个100px的font-size为参照
+```
+步骤：
+```
+1.拿设计稿竖着的横向分辨率除以100得到body的宽度
+  eg：  iphone6，横向分辨率为750，width =750 / 100 = 7.5rem
+        iphone4/5，横向分辨率为640，width为640 / 100 = 6.4rem
+ 2.布局时  css尺寸 = 设计稿标注尺寸／100
+   eg：210px = 210/100 = 2.1rem       
+  3.   Dom ready以后获取html的font-size
+    ⚠️ 当设备宽度（deviceWidth大于设计稿的横向分辨率时 html的font-size始终等于横向分辨率/body元素宽）
+ 代码体现
+   var deviceWidth = document.documentElement.clientWidth;
+        if(deviceWidth > 640) deviceWidth = 640;
+        document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+4.font-size 可能需要额外的媒体查询 而且不要用rem
+
+   @media screen and (max-width:321px){
+           .m-navlist{font-size:15px}
+          }
+
+          @media screen and (min-width:321px) and (max-width:400px){
+              .m-navlist{font-size:16px}
+          }
+
+          @media screen and (min-width:400px){
+              .m-navlist{font-size:18px}
+          }
+5.关于视口的设置
+      <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+```
+
+#淘宝移动端适配方案
+要点：
+```
+1.设置视口标签
+ <meta name="viewport"   content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+使得整个网页在设备内显示时页面的宽度始终等于设备宽度（device-width）
+
+scale  =1 时 device-width = 设备的物理分辨率／devicePixelRatio（设备像素比）
+```
+
+ <font face="STCAIYUN" color=#83933b size=4>手淘的布局前提是  动态设置 viewport的scale  目的就是为了保证页面大小与设计稿大小一致</font>
+```
+比如设计稿是750的横向分辨率 那么实际页面的device-width 以iphone6来说 也等于750
+这样的话设计稿上标注的尺寸只要除以某一个值就能够转换成rem了
+```
+2.<font face="STCAIYUN" color=red size=3>那么 如何动态设置？</font>
+
+```
+var scale = 1 / devicePixelRatio;
+document.querySelector('meta[name="viewport"]').setAttribute('content','initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+```
+
+3.<font face="STCAIYUN" color=red size=3>手淘布局的第二个要点就是关于html元素的font-size计算公式</font>
+
+```
+font-size = deviceWidth/10;
+```
+可能会需要额外的媒体查询 同网易 不使用rem
+但是呢 淘宝的rem不太好计算  如果借助less 就好算多了
+类似：
+```
+//定义一个变量和一个mixin
+@baseFontSize: 75;//基于视觉稿横屏尺寸/100得出的基准font-size
+.px2rem(@name, @px){
+    @{name}: @px / @baseFontSize * 1rem;
+}
+//使用示例：
+.container {
+    .px2rem(height, 240);
+}
+//less翻译结果：
+.container {
+    height: 3.2rem;
+}
+```
+4.<font face="STCAIYUN" color=red size=3>元素的css尺寸如何计算？</font>
+```
+比如一个设计稿上某一个元素的高是 150px
+css尺寸 =  设计稿标记尺寸/该设计稿对应的html的font-size
+也就是说  设计稿是750  所以 font-size = 750/10 =75px
+ 150/75 = 2rem
+```
+
+
+关于这种做法的具体实现，淘宝已经给我们提供了一个开源的解决方案
+
+<font face="STCAIYUN" color=bluegreen size=5>[淘宝移动端布局方案](https://github.com/amfe/lib-flexible)</font>
+
+<font face="STCAIYUN" color=red size=3>比较网易与淘宝的做法</font>
+<font face="STCAIYUN" color=bluegreen size=3>共同点：</font>
+都能适配所有的手机设备，对于pad，网易与淘宝都会跳转到pc页面，不再使用触屏版的页面
+都需要动态设置html的font-size
+布局时各元素的尺寸值都是根据设计稿标注的尺寸计算出来，由于html的font-size是动态调整的，所以能够做到不同分辨率下页面布局呈现等比变化
+容器元素的font-size都不用rem，需要额外地对font-size做媒介查询
+都能应用于尺寸不同的设计稿，只要按以上总结的方法去用就可以了
+
+<font face="STCAIYUN" color=bluegreen size=3>不同点：</font>
+淘宝的设计稿是基于750的横向分辨率，网易的设计稿是基于640的横向分辨率，还要强调的是，虽然设计稿不同，但是最终的结果是一致的，设计稿的尺寸一个公司设计人员的工作标准，每个公司不一样而已
+淘宝还需要动态设置viewport的scale，网易不用
+最重要的区别就是：网易的做法，rem值很好计算，淘宝的做法肯定得用计算器才能用好了 。不过要是你使用了less和sass这样的css处理器，就好办多了
+
+
