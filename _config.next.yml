@@ -126,7 +126,7 @@ sidebar:
 # Sidebar Avatar
 avatar:
   # Replace the default image and set the url here.
-  url: #/images/avatar.gif
+  url: /uploads/avatar.jpeg
   # If true, the avatar will be dispalyed in circle.
   rounded: false
   # If true, the avatar will be rotated with the cursor.
@@ -634,8 +634,8 @@ gitalk:
   enable: true
   github_id: maying2020 # GitHub repo owner
   repo: maying2020.github.io # Repository name to store issues
-  client_id: 1ade6ae310dee1a615bb # GitHub Application Client ID
-  client_secret: bb83a1099492163bf8a19e4a14f956dd1d27d018 # GitHub Application Client Secret
+  client_id: ad26a95c1fc965c4a6a0 # GitHub Application Client ID
+  client_secret: 448e023d8aa656ffa0a69216e567368ee9fe45b3 # GitHub Application Client Secret
   admin_user: maying2020 # GitHub repo owner and collaborators, only these guys can initialize gitHub issues
   distraction_free_mode: true # Facebook-like distraction free mode
   # Gitalk's display language depends on user's browser or system environment

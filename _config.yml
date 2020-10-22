@@ -127,11 +127,10 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
     type: git
-    repository: git@github.com:anruence/anruence.github.io.git
-    # repository: https://github.com/anruence/anruence.github.io
+    repository: https://github.com/maying2020/maying2020.github.io
     branch: master
     name: maying
-    email: maying912929@gmail.com
+    email: maxiaoying929@gmail.com
 
 live2d:
   enable: false
